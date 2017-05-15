@@ -88,7 +88,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         if bottomTextField.isFirstResponder {
             
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
         }
     }
     
@@ -146,9 +146,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func generateMemedImage() -> UIImage {
         
-        // TODO: Hide toolbar and navbar
-        imageToolbar.isHidden = true
-        socialToolbar.isHidden = true
+        // Hide toolbar and navbar
+        hideShowToolbar(true)
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -156,11 +155,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        // TODO: Show the toolbar and navbar
-        imageToolbar.isHidden = false
-        socialToolbar.isHidden = false
+        // Show the toolbar and navbar
+        hideShowToolbar(false)
         
         return memedImage
+    }
+    
+    func hideShowToolbar(_ state: Bool) {
+        
+        imageToolbar.isHidden = state
+        socialToolbar.isHidden = state
     }
     
     func startOver() {
@@ -171,22 +175,24 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomTextField.text = "BOTTOM"
     }
     
+    func pickAnImageFrom(_ source: UIImagePickerControllerSourceType) {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = source
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     //MARK: Actions
     
     @IBAction func pickAnImageFromLibrary(_ sender: UIBarButtonItem) {
         
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImageFrom(.photoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
         
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImageFrom(.camera)
     }
     
     
@@ -197,9 +203,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         activityViewController.popoverPresentationController?.sourceView = self.view
         
         self.present(activityViewController, animated: true, completion: nil)
-        activityViewController.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
-            self.save()
-            self.startOver()
+        activityViewController.completionWithItemsHandler = {
+            (activityType, completed, returnedItems, error) in
+            if completed {
+                self.save()
+                self.startOver()
+            }
         }
     }
     

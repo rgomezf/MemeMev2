@@ -20,8 +20,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>For MemeMe Project</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>impact.ttf</string>
@@ -49,5 +47,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>To create awesome Memes with the App!</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For MemeMe Project</string>
 </dict>
 </plist>
