@@ -25,11 +25,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSStrokeColorAttributeName: UIColor.black,
         NSForegroundColorAttributeName: UIColor.white,
         NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
-        NSStrokeWidthAttributeName: -5.0
+        NSStrokeWidthAttributeName: -3.6
     ]
     
     var memedObject: Meme?
     var memedImage: UIImage?
+    
+    override var prefersStatusBarHidden: Bool {
+        
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,15 +46,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         setTextAttributes(bottomTextField)
         shareTool.isEnabled = false
         
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -88,7 +86,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         if bottomTextField.isFirstResponder {
             
-            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
@@ -150,8 +148,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         hideShowToolbar(true)
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
