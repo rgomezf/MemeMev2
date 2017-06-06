@@ -28,7 +28,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSStrokeWidthAttributeName: -3.6
     ]
     
-    var memedObject: Meme?
     var memedImage: UIImage?
     
     override var prefersStatusBarHidden: Bool {
@@ -139,7 +138,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func save() {
         
-        memedObject = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+       let memedObject = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
     }
     
     func generateMemedImage() -> UIImage {
@@ -173,26 +172,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomTextField.text = "BOTTOM"
     }
     
-    func pickAnImageFrom(_ source: UIImagePickerControllerSourceType) {
+    //MARK: Actions
+    
+    @IBAction func pickAnImageFrom(_ sender: UIBarButtonItem ) {
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = source
+        imagePicker.sourceType = (sender.tag == 1) ? .camera : .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
-    
-    //MARK: Actions
-    
-    @IBAction func pickAnImageFromLibrary(_ sender: UIBarButtonItem) {
-        
-        pickAnImageFrom(.photoLibrary)
-    }
-    
-    @IBAction func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
-        
-        pickAnImageFrom(.camera)
-    }
-    
     
     @IBAction func shareMemedImage(_ sender: UIBarButtonItem) {
         
