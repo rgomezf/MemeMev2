@@ -1,6 +1,6 @@
 //
 //  MemeEditorViewController.swift
-//  MemeMe 1.0
+//  MemeMe v2.0
 //
 //  Created by Ramon Gomez on 4/21/17.
 //  Copyright © 2017 Ramon's. All rights reserved.
@@ -138,7 +138,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func save() {
         
-       let memedObject = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: self.memedImage!)
+        
+        // Add it to the memes array on the Application Delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes.append(meme)
+        
+        // Dismiss the Meme Editor VC
+        dismiss(animated: true, completion: nil)
     }
     
     func generateMemedImage() -> UIImage {
@@ -185,6 +192,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func shareMemedImage(_ sender: UIBarButtonItem) {
         
         let memeGenerated = generateMemedImage()
+        
         let activityViewController = UIActivityViewController(activityItems: [memeGenerated], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         
@@ -192,6 +200,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         activityViewController.completionWithItemsHandler = {
             (activityType, completed, returnedItems, error) in
             if completed {
+                self.memedImage = memeGenerated
                 self.save()
                 self.startOver()
             }
