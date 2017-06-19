@@ -1,4 +1,4 @@
-# MemeMe 22.0: Meme Editor
+# MemeMe v2.0: Meme Editor
 
 The Meme Editor View consists of an image view overlaid by two text fields,
 one near the top and one near the bottom of the image, the user can share it
