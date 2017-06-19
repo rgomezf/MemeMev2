@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JBr-ak-0kl">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -110,14 +110,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g1A-Wc-C4j">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="4" y="0.0" width="406" height="736"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" restorationIdentifier="socialToolbar" translatesAutoresizingMaskIntoConstraints="NO" id="ic6-DW-HnL" userLabel="Social Toolbar">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="action" id="I6d-Z4-whq">
                                         <connections>
@@ -133,7 +133,7 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zEh-dc-X3r">
-                                <rect key="frame" x="43" y="69" width="289" height="30"/>
+                                <rect key="frame" x="47" y="69" width="320" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GKJ-2k-gjh"/>
                                 </constraints>
@@ -142,7 +142,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" restorationIdentifier="imageToolbar" translatesAutoresizingMaskIntoConstraints="NO" id="QZa-Pz-hNA" userLabel="Image Toolbar">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <items>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="f1C-NY-rCF"/>
                                     <barButtonItem tag="1" systemItem="camera" id="h4T-8Z-Qjo">
@@ -160,7 +160,7 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l8g-pR-Tlz">
-                                <rect key="frame" x="43" y="562" width="289" height="30"/>
+                                <rect key="frame" x="47" y="631" width="320" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="wbp-NP-DkL"/>
                                 </constraints>
@@ -213,11 +213,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pxD-Kg-qeF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QqF-GD-9iX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="el4-iO-Un1">
-                                <rect key="frame" x="-4" y="72" width="383" height="587"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="656"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -235,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OB6-jL-767" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2802.898550724638" y="-555.16304347826087"/>
+            <point key="canvasLocation" x="2014" y="-555"/>
         </scene>
         <!--Table NVC-->
         <scene sceneID="gbl-Ic-92s">
@@ -271,7 +271,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lr4-lh-VTY" id="St3-A3-xib">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -292,24 +292,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dRH-Qe-w0T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-152.89855072463769" y="-158.55978260869566"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="S0o-nn-5qI">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pGt-rc-bS5" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BSa-at-K4q">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="k8x-At-I5M" kind="relationship" relationship="rootViewController" id="E6U-io-OH9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zw9-T9-tjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1895.6521739130437" y="-555.16304347826087"/>
         </scene>
     </scenes>
     <resources>
