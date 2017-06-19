@@ -177,6 +177,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         shareTool.isEnabled = false
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
+        
+        dismiss(animated: true, completion: nil)
     }
     
     //MARK: Actions

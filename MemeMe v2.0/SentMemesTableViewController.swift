@@ -17,9 +17,6 @@ class SentMemesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +47,14 @@ class SentMemesTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        detailController.meme = self.memes[(indexPath as NSIndexPath).row]
+        
+        self.navigationController!.pushViewController(detailController, animated: true)
+    }
+
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -59,22 +64,11 @@ class SentMemesTableViewController: UITableViewController {
         if editingStyle == .delete{
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.memes.remove(at: indexPath.row)
-            self.tableView.beginUpdates()
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-            self.tableView.endUpdates()
-            self.tableView.reloadData()
             
+            appDelegate.memes.remove(at: indexPath.row)
+            memes = appDelegate.memes
+            self.tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
         }
         
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-        detailController.meme = self.memes[(indexPath as NSIndexPath).row]
-        
-        self.navigationController!.pushViewController(detailController, animated: true)
-    }
-
 }
