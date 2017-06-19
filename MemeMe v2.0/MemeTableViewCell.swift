@@ -2,7 +2,7 @@
 //  MemeTableViewCell.swift
 //  MemeMe v2.0
 //
-//  Created by Ramon Gomez on 6/7/17.
+//  Created by Ramon Gomez on 6/14/17.
 //  Copyright © 2017 Ramon's. All rights reserved.
 //
 
@@ -10,8 +10,11 @@ import UIKit
 
 class MemeTableViewCell: UITableViewCell {
     
-    // MARK: Outlets
-    
-    @IBOutlet weak var memedImage: UIImageView!
-    @IBOutlet weak var topBottomLabels: UILabel!
+    override func layoutSubviews() {
+        
+        super.layoutSubviews()
+        
+        self.imageView?.frame = CGRect(x: 0, y: 0, width: 120, height: 120)
+        self.textLabel?.frame = CGRect(x: 130, y: 45, width: 245, height: 30)
+    }
 }

@@ -15,11 +15,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet var memeCollectionView: UICollectionView!
     
-    var memes: [Meme]! {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        return appDelegate.memes
-    }
+    var memes: [Meme]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,15 +37,21 @@ class SentMemesCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        memes = appDelegate.memes
+        
         //self.memeCollectionView.reloadData()
         collectionView?.reloadData()
     }
     
     func flowLayoutSet (_ size: CGSize) {
         
+        
+        // Approach founded on the forums
         if let flowLayout = self.flowLayout {
             let space: CGFloat = 1.5
-            let dimension = size.width >= size.height ? (size.width - (5 * space)) / 6.0 : (size.width - (2 * space)) / 3.0
+            let dimension = size.width >= size.height ? (size.width - (2 * space)) / 6.0 : (size.width - (2 * space)) / 3.0
             
             flowLayout.minimumInteritemSpacing = space
             flowLayout.minimumLineSpacing = space
@@ -72,9 +74,19 @@ class SentMemesCollectionViewController: UICollectionViewController {
         let meme = memes[(indexPath as NSIndexPath).row]
         
         cell.memeImage.image = meme.memedImage
-        cell.memeImage.contentMode = .scaleAspectFill
+        cell.memeImage.contentMode = .scaleAspectFit
         
         return cell
     }
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let detailController = self.storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        
+        let meme = self.memes[(indexPath as NSIndexPath).row]
+        
+        detailController.meme = meme
+        
+        self.navigationController?.pushViewController(detailController, animated: true)
+    }
 }

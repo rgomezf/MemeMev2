@@ -191,16 +191,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func shareMemedImage(_ sender: UIBarButtonItem) {
         
-        let memeGenerated = generateMemedImage()
+        memedImage = generateMemedImage()
         
-        let activityViewController = UIActivityViewController(activityItems: [memeGenerated], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [memedImage!], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         
         self.present(activityViewController, animated: true, completion: nil)
         activityViewController.completionWithItemsHandler = {
             (activityType, completed, returnedItems, error) in
             if completed {
-                self.memedImage = memeGenerated
                 self.save()
                 self.startOver()
             }
