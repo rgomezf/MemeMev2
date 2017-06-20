@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
@@ -47,7 +47,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         // Disabling camera button when camera is not present
@@ -56,85 +55,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        
         super.viewWillDisappear(true)
         unsubscribeFromKeyboardNotifications()
     }
     
     //MARK: Methods
-    
-    func setTextAttributes (_ textField: UITextField) {
-        
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = .center
-        textField.delegate = self
-    }
-    
-    func subscribeToKeyboardNotifications() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
-    }
-    
-    func unsubscribeFromKeyboardNotifications() {
-        
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-    }
-    
-    func keyboardWillShow(_ notification: Notification) {
-        
-        if bottomTextField.isFirstResponder {
-            
-            view.frame.origin.y = -getKeyboardHeight(notification)
-        }
-    }
-    
-    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
-        
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-        return keyboardSize.cgRectValue.height
-    }
-    
-    func keyboardWillHide(_ notification: Notification) {
-        
-        if bottomTextField.isFirstResponder {
-            view.frame.origin.y = 0
-        }
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        if textField.text == "TOP" || textField.text == "BOTTOM" {
-            textField.text = ""
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        // Dismiss the picker if the user canceled.
-        dismiss(animated: true, completion: nil)
-        if imagePickerView.image == nil {
-            shareTool.isEnabled = false
-        }
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        // Selecting the original image from the Dictionary
-        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imagePickerView.image = selectedImage
-            shareTool.isEnabled = true
-        }
-        // Dismissing the picker
-        dismiss(animated: true, completion: nil)
-    }
     
     func save() {
         
@@ -210,5 +136,86 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         self.startOver()
+    }
+}
+
+extension MemeEditorViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        // Dismiss the picker if the user canceled.
+        dismiss(animated: true, completion: nil)
+        if imagePickerView.image == nil {
+            shareTool.isEnabled = false
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        // Selecting the original image from the Dictionary
+        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imagePickerView.image = selectedImage
+            shareTool.isEnabled = true
+        }
+        // Dismissing the picker
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension MemeEditorViewController: UITextFieldDelegate {
+    
+    func setTextAttributes (_ textField: UITextField) {
+        
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.delegate = self
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWillShow(_ notification: Notification) {
+        
+        if bottomTextField.isFirstResponder {
+            
+            view.frame.origin.y = -getKeyboardHeight(notification)
+        }
+    }
+    
+    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+        
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        
+        if bottomTextField.isFirstResponder {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 }
