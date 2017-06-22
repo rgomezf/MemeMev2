@@ -15,8 +15,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var socialToolbar: UIToolbar!
-    @IBOutlet weak var imageToolbar: UIToolbar!
+    @IBOutlet weak var socialNavigationBar: UINavigationBar!
+    @IBOutlet weak var imagePickerNB: UINavigationBar!
     @IBOutlet weak var shareTool: UIBarButtonItem!
     
     //MARK: Properties
@@ -30,10 +30,10 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     
     var memedImage: UIImage?
     
-    override var prefersStatusBarHidden: Bool {
-        
-        return true
-    }
+//    override var prefersStatusBarHidden: Bool {
+//        
+//        return true
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,8 +93,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     
     func hideShowToolbar(_ state: Bool) {
         
-        imageToolbar.isHidden = state
-        socialToolbar.isHidden = state
+        imagePickerNB.isHidden = state
+        socialNavigationBar.isHidden = state
     }
     
     func startOver() {
