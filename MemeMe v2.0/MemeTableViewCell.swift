@@ -17,6 +17,7 @@ class MemeTableViewCell: UITableViewCell {
         // Founded aproach on the forums.  Previously couldn't display the images correctly.
         
         self.imageView?.frame = CGRect(x: 0, y: 0, width: 120, height: 120)
+        self.imageView?.contentMode = .scaleAspectFit
         self.textLabel?.frame = CGRect(x: 130, y: 45, width: 245, height: 30)
     }
 }
