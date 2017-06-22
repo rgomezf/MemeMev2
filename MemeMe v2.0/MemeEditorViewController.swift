@@ -30,11 +30,6 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     
     var memedImage: UIImage?
     
-//    override var prefersStatusBarHidden: Bool {
-//        
-//        return true
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
