@@ -21,4 +21,16 @@ class MemeDetailViewController: UIViewController {
         detailMemedImage.image = self.meme.memedImage
         detailMemedImage.contentMode = .scaleAspectFit
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        changeTabBarStatus(true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        changeTabBarStatus(false)
+    }
+    
+    private func changeTabBarStatus (_ status: Bool) {
+        self.tabBarController?.tabBar.isHidden = status
+    }
 }

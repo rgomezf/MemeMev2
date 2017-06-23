@@ -13,11 +13,6 @@ private let reuseIdentifier = "MemeTableViewCell"
 class SentMemesTableViewController: UITableViewController {
 
     var memes: [Meme]!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
 
     override func viewWillAppear(_ animated: Bool) {
         
